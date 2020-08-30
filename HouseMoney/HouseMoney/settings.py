@@ -100,6 +100,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+MEDIA_ROOT = "/home/geoed/source/House-Money/HouseMoney/Media/"
+
+MEDIA_URL = "/Media/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
