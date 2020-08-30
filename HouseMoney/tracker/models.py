@@ -10,6 +10,10 @@ class Payment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     proof = models.ImageField()
 
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
 
 class Log(models.Model):
     choices = [
