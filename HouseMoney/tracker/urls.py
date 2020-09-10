@@ -7,4 +7,5 @@ urlpatterns = [
     path('submit/payment', views.submit_payment, name='submitpayment'),
     path('submit/log', views.submit_log, name='submitlog'),
     path('success', views.success, name='success'),
+    path('logs', views.all_logs, name='logs')
 ]

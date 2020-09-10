@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from .forms import PaymentForm, LogForm
-from .models import Payment
+from .models import Payment, Log
 
 
 def all_payments(request):
@@ -34,6 +34,20 @@ def submit_payment(request):
     else:
         form = PaymentForm()
     return render(request, 'tracker/submit_payment.html', {'form': form})
+
+
+def all_logs(request):
+    electric = []
+    gas = []
+    for i in Log.objects.order_by('-time'):
+        i: Log
+        if i.utility == 'E':
+            electric.append([i.time.timestamp(), float(i.value)])
+        else:
+            gas.append([i.time.timestamp(), float(i.value)])
+
+    return render(request, 'tracker/logs.html', {'electric': electric,
+                                                 'gas': gas})
 
 
 @login_required(redirect_field_name=reverse_lazy('login'))

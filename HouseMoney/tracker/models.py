@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 # Create your models here.
 
 
@@ -20,7 +21,9 @@ class Log(models.Model):
         ('E', 'Electric'),
         ('G', 'Gas')
     ]
-    time = models.DateTimeField(auto_now_add=True)
+    date_created = models.DateTimeField(auto_now_add=True,
+                                        null=True, blank=True)
+    time = models.DateTimeField(default=timezone.now)
     value = models.DecimalField(max_digits=5, decimal_places=2)
     utility = models.CharField(choices=choices, max_length=1)
     logger = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
