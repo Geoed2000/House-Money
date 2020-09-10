@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Logs{% endblock title %}
+
+{% block head %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart', 'line']});
+    google.charts.setOnLoadCallback(drawCurveTypes);
+
+    function drawCurveTypes() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Date');
+        data.addColumn('number', 'Electric');
+        data.addColumn('number', 'Gas');
+        
+        var datain = []
+
+        electric = {{ electric }}
+        for (i=0; i<electric.length; i++){
+            entry = electric[i]
+            e = [new Date(entry[0]*1000), entry[1],null]
+            console.log(e)
+            datain.push(e)
+        }
+        gas = {{ gas }}
+        for (i=0; i<gas.length; i++){
+            entry = gas[i]
+            e = [new Date(entry[0]*1000),null,entry[1]]
+            console.log(e)
+            datain.push(e)
+        }
+
+        data.addRows(datain);
+
+        var options = {
+            hAxis: {
+            title: 'Time'
+            },
+            vAxis: {
+            title: 'Price'
+            },
+            series: {
+            1: {curveType: 'function'}
+            }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+</script>
+{% endblock head %}
+
+{% block content %}
+<div id="chart_div"></div>
+
+{% endblock content %}

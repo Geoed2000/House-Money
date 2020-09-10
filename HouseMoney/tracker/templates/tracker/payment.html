@@ -1,0 +1,11 @@
+{%extends 'base.html'%}
+
+{% block title %}Payment-{{ payment.id}}{% endblock title %}
+
+{% block content %}
+<h1>Payment-{{ payment.id}}</h1>
+<p>{{ payment.name }}</p>
+<p>£{{ payment.value }}</p>
+<p>{{ payment.user.username }}</p>
+<img src='{{ payment.proof.url }}'/>
+{% endblock content %}

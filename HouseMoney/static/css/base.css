@@ -1,0 +1,35 @@
+:root{
+    --color-1: #c0fdff;
+    --color-2: #6500A3;
+    --color-3: #ffcbf2;
+}
+html,
+body{
+    font-family: 'Kufam', cursive;
+    background-color: var(--color-2);
+    color: var(--color-1);
+}
+a{
+    color: var(--color-3);
+}
+
+#header-items a {
+    color: inherit;
+    width: 10px;
+    padding: 5px;
+    text-decoration: none;
+    border: 2px solid var(--color-3); 
+    transition: background-color ease 0.3s;
+}
+#header-items a:hover {
+    background-color: var(--color-3);
+}
+#header-items li {
+    margin: 10px;
+}
+#header-items {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
