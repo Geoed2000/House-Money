@@ -66,5 +66,9 @@ def submit_log(request):
     return render(request, 'tracker/submit_log.html', {'form': form})
 
 
+def index(request):
+    return render(request, 'tracker/index.html')
+
+
 def success(request):
-    return HttpResponse('successfully uploaded')
+    return HttpResponseRedirect(reverse('index'))

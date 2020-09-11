@@ -12,13 +12,15 @@
 
 <body>
     <div id="header">
-        <ul id="header-items">
-            <li><a href="{% url 'logs' %}">Logs</a></li>
-            <li><a href="{% url 'logs' %}">Logs</a></li>
-            <li><a href="{% url 'logs' %}">Logs</a></li>
-            <li><a href="{% url 'logs' %}">Logs</a></li>
-            <li><a href="{% url 'logs' %}">Logs</a></li>
-        </ul>
+        <a class="header-link" href="{% url 'submitlog' %}">Submit-Log</a>
+        <a class="header-link" href="{% url 'submitpayment' %}">Submit-Payment</a>
+        <a class="header-link" href="{% url 'logs' %}">Logs</a>
+        <a class="header-link" href="{% url 'allpayments' %}">Payments</a>
+        {% if user.is_authenticated %}
+            <a class="header-link header-login" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a class="header-link header-login" href="{% url 'login' %}">login</a>
+        {% endif%}
     </div>
     <div id="content">
         {% block content %}{% endblock %}
